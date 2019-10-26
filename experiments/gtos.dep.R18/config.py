@@ -14,7 +14,7 @@ config = C
 C.seed = 0
 
 """please config ROOT_dir and user when u first using"""
-C.repo_name = 'Deep-Encoding-Pooling-Network-DEP-'
+C.repo_name = 'pytorch-material-classification'
 C.dataset = 'GTOS'
 C.model = 'DEP'
 C.abs_dir = osp.realpath(".")
@@ -30,7 +30,7 @@ C.val_log_file = C.log_dir + '/val_' + exp_time + '.log'
 C.link_val_log_file = C.log_dir + '/val_last.log'
 
 """Data Dir and Weight Dir"""
-C.dataset_path = "/home/jia/Downloads/database/minc-2500/"
+C.dataset_path = "/home/jia/Downloads/database/gtos-mobile/"
 C.img_root_folder = C.dataset_path
 C.gt_root_folder = C.dataset_path
 
@@ -49,11 +49,13 @@ C.lr = 1e-2
 C.lr_decay = 40
 C.momentum = 0.9
 C.weight_decay = 1e-4
-C.batch_size = 64
+C.batch_size = 128
 C.start_epoch = 1
 C.nepochs = 100
+C.eval = False
 
-C.no_cuda = False
+C.cuda = True
+C.gpu = '0'
 C.resume = False
 C.momentum = 0.9
 C.weight_decay = 1e-4

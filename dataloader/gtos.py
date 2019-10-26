@@ -37,9 +37,8 @@ class Dataloder():
             normalize,
         ])
 
-        data_dir = 'dataset/gtos-mobile'
-        trainset = datasets.ImageFolder(os.path.join(data_dir, 'train'), transform_train)
-        testset = datasets.ImageFolder(os.path.join(data_dir, 'test'), transform_test)
+        trainset = datasets.ImageFolder(os.path.join(config.dataset_path, 'train'), transform_train)
+        testset = datasets.ImageFolder(os.path.join(config.dataset_path, 'test'), transform_test)
 
 
         kwargs = {'num_workers': 8, 'pin_memory': True} if config.cuda else {}
