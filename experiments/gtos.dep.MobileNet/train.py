@@ -9,8 +9,8 @@ from network import DEPNet
 from dataloader.gtos import Dataloder
 import torch.optim as optim
 from torch.autograd import Variable
-
-from utils import save_checkpoint
+from model.mobilenet_v2 import mobilenet_v2
+from utils.utils import save_checkpoint
 from tqdm import tqdm
 import sys
 import os
@@ -41,7 +41,8 @@ def main():
     classes, train_loader, test_loader = Dataloder(config).getloader()
 
     # init the model
-    model = DEPNet(len(classes))
+    backbone = mobilenet_v2(True)
+    model = DEPNet(len(classes), backbone)
     print(model)
     # criterion and optimizer
     criterion = nn.CrossEntropyLoss()
