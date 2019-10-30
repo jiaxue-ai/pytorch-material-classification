@@ -15,7 +15,7 @@ C.seed = 0
 
 """please config ROOT_dir and user when u first using"""
 C.repo_name = 'pytorch-material-classification'
-C.dataset = 'GTOS'
+C.dataset = 'GTOS_MOBILE'
 C.model = 'DEP'
 C.abs_dir = osp.realpath(".")
 C.this_dir = C.abs_dir.split(osp.sep)[-1]
