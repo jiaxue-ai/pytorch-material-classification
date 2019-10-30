@@ -6,8 +6,8 @@ import torch
 import torch.nn as nn
 from torchvision.models import resnet
 from config import config
-from network import DEPNet
-from dataloader.gtos_mobile import Dataloder
+from network import DAIN
+from dataloader.gtos import Dataloder
 import torch.optim as optim
 from torch.autograd import Variable
 
@@ -42,8 +42,9 @@ def main():
     classes, train_loader, test_loader = Dataloder(config).getloader()
 
     # init the model
-    backbone = resnet.resnet18(pretrained=True)
-    model = DEPNet(len(classes), backbone)
+    backbone1 = resnet.resnet18(pretrained=True)
+    backbone2 = resnet.resnet18(pretrained=True)
+    model = DAIN(len(classes), backbone1, backbone2)
     print(model)
     # criterion and optimizer
     criterion = nn.CrossEntropyLoss()
@@ -82,12 +83,12 @@ def main():
         data_loader = iter(train_loader)
 
         for batch_idx in pbar:
-            data, target = data_loader.next()
+            img, diff_img, target = data_loader.next()
             if config.cuda:
-                data, target = data.cuda(), target.cuda()
-            data, target = Variable(data), Variable(target)
+                img, diff_img, target = img.cuda(), diff_img.cuda(), target.cuda()
+            img, diff_img, target = Variable(img), Variable(diff_img), Variable(target)
             optimizer.zero_grad()
-            output = model(data)
+            output = model(img, diff_img)
             loss = criterion(output, target)
             loss.backward()
             optimizer.step()
@@ -116,10 +117,10 @@ def main():
         data_loader = iter(test_loader)
         with torch.no_grad():
             for batch_idx in pbar:
-                data, target = data_loader.next()
+                img, diff_img, target = data_loader.next()
                 if config.cuda:
-                    data, target = data.cuda(), target.cuda()
-                output = model(data)
+                    img, diff_img, target = img.cuda(), diff_img.cuda(), target.cuda()
+                output = model(img, diff_img)
                 test_loss += criterion(output, target).item()
                 # get the index of the max log-probability
                 pred = output.data.max(1)[1] 

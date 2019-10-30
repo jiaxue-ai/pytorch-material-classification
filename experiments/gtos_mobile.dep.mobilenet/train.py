@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from config import config
 from network import DEPNet
-from dataloader.gtos import Dataloder
+from dataloader.gtos_mobile import Dataloder
 import torch.optim as optim
 from torch.autograd import Variable
 from model.mobilenet_v2 import mobilenet_v2
