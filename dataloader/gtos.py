@@ -28,9 +28,9 @@ def make_dataset(txtname, datadir, class_to_idx):
         for line in lines:
             name, label = line.split(' ')
             name = name.split('/')[-1]
-            for filename in os.listdir(os.path.join(datadir, 'gamma1_patch2000', name)):
-                _rgbimg = os.path.join(datadir, 'jpegs_256_withalpha', name, filename)
-                _diffimg = os.path.join(datadir, 'gamma1_patch2000', name, filename)
+            for filename in os.listdir(os.path.join(datadir, 'diff_imgs', name)):
+                _rgbimg = os.path.join(datadir, 'color_imgs', name, filename)
+                _diffimg = os.path.join(datadir, 'diff_imgs', name, filename)
                 assert os.path.isfile(_rgbimg)
                 rgbimages.append(_rgbimg)
                 diffimages.append(_diffimg)
@@ -41,7 +41,7 @@ def make_dataset(txtname, datadir, class_to_idx):
 
 class GTOSDataloder(data.Dataset):
     def __init__(self, config, train=True, transform=None):
-        classes, class_to_idx = find_classes(os.path.join(config.dataset_path, 'Remat_splits/classInd.txt'))
+        classes, class_to_idx = find_classes(os.path.join(config.dataset_path, 'gtos_splits/classInd.txt'))
         self.classes = classes
         self.class_to_idx = class_to_idx
         self.train = train
@@ -52,9 +52,9 @@ class GTOSDataloder(data.Dataset):
                                          std=[0.07, 0.07, 0.07])
         
         if train:
-            filename = os.path.join(config.dataset_path, 'Remat_splits/trainlist0'+ config.split +'.txt')
+            filename = os.path.join(config.dataset_path, 'gtos_splits/trainlist0'+ config.split +'.txt')
         else:
-            filename = os.path.join(config.dataset_path, 'Remat_splits/testlist0'+ config.split +'.txt')
+            filename = os.path.join(config.dataset_path, 'gtos_splits/testlist0'+ config.split +'.txt')
 
         self.rgbimages, self.diffimages, self.labels = make_dataset(filename, config.dataset_path, 
             class_to_idx)

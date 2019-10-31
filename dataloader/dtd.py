@@ -46,4 +46,4 @@ class Dataloder():
         self.testloader = testloader
     
     def getloader(self):
-        return self.trainloader, self.testloader
+        return self.classes, self.trainloader, self.testloader
