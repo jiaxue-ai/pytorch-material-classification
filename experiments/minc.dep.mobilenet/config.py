@@ -15,7 +15,7 @@ C.seed = 0
 
 """please config ROOT_dir and user when u first using"""
 C.repo_name = 'pytorch-material-classification'
-C.dataset = 'DTD'
+C.dataset = 'MINC'
 C.model = 'DEP'
 C.abs_dir = osp.realpath(".")
 C.this_dir = C.abs_dir.split(osp.sep)[-1]
@@ -30,7 +30,7 @@ C.val_log_file = C.log_dir + '/val_' + exp_time + '.log'
 C.link_val_log_file = C.log_dir + '/val_last.log'
 
 """Data Dir and Weight Dir"""
-C.dataset_path = "/home/jia/Downloads/github/pytorch-material-classification/dataset/dtd/"
+C.dataset_path = "/home/jia/Downloads/github/pytorch-material-classification/dataset/minc-2500/"
 C.img_root_folder = C.dataset_path
 C.gt_root_folder = C.dataset_path
 
@@ -49,7 +49,7 @@ C.lr = 1e-2
 C.lr_decay = 40
 C.momentum = 0.9
 C.weight_decay = 1e-4
-C.batch_size = 64
+C.batch_size = 128
 C.start_epoch = 1
 C.nepochs = 100
 C.eval = False
