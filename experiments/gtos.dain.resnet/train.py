@@ -9,9 +9,9 @@ import torch.optim as optim
 from torch.autograd import Variable
 from torchvision.models import resnet
 from tqdm import tqdm
+from config import config
 from utils.utils import save_checkpoint
 
-from config import config
 from dataloader.gtos import Dataloder
 from network import DAIN
 

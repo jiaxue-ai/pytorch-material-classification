@@ -8,9 +8,9 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 from tqdm import tqdm
+from config import config
 from utils.utils import save_checkpoint
 
-from config import config
 from dataloader.gtos_mobile import Dataloder
 from model.mobilenet_v2 import mobilenet_v2
 from network import DEPNet
