@@ -1,6 +1,6 @@
 # Pytorch Material Classification
 
-
+This repo provide support to use pytorch for material classification in GTOS, GTOS-MOBILE, DTD and MINC dataset
 ## Setup
 
 ### Prerequisites

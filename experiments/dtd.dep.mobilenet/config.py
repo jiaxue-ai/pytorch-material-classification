@@ -2,9 +2,8 @@ import os
 import os.path as osp
 import sys
 import time
-import numpy as np
+
 from easydict import EasyDict as edict
-import argparse
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
@@ -30,7 +29,7 @@ C.val_log_file = C.log_dir + '/val_' + exp_time + '.log'
 C.link_val_log_file = C.log_dir + '/val_last.log'
 
 """Data Dir and Weight Dir"""
-C.dataset_path = "/home/jia/Downloads/github/pytorch-material-classification/dataset/dtd/"
+C.dataset_path = "dataset/dtd/"
 C.img_root_folder = C.dataset_path
 C.gt_root_folder = C.dataset_path
 

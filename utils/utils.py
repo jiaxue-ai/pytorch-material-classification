@@ -1,7 +1,7 @@
-import sys
 import os
-import torch
 import shutil
+
+import torch
 
 
 # refer to https://github.com/xternalz/WideResNet-pytorch

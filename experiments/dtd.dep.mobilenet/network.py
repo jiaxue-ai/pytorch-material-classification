@@ -1,10 +1,8 @@
+import encoding
 import torch
-from torch.autograd import Variable
 import torch.nn as nn
 from torch.autograd import Variable
 
-import encoding
-import torchvision.models as resnet
 
 class DEPNet(nn.Module):
     def __init__(self, nclass, backbone):

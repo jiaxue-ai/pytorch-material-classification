@@ -1,26 +1,17 @@
-import torch
-import torch.utils.data as data
-import torchvision
-from torchvision import transforms, datasets
-
-from PIL import Image
 import os
 import os.path
 
-_imagenet_pca = {
-    'eigval': torch.Tensor([0.2175, 0.0188, 0.0045]),
-    'eigvec': torch.Tensor([
-        [-0.5675,  0.7192,  0.4009],
-        [-0.5808, -0.0045, -0.8140],
-        [-0.5836, -0.6948,  0.4203],
-    ])
-}
+import torch
+import torch.utils.data as data
+from PIL import Image
+from torchvision import transforms
 
 def find_classes(dir):
     classes = [d for d in os.listdir(dir) if os.path.isdir(os.path.join(dir, d))]
     classes.sort()
     class_to_idx = {classes[i]: i for i in range(len(classes))}
     return classes, class_to_idx
+
 
 def make_dataset(txtnames, datadir, class_to_idx):
     images = []
@@ -32,11 +23,12 @@ def make_dataset(txtnames, datadir, class_to_idx):
                 _img = os.path.join(datadir, line.strip())
                 assert os.path.isfile(_img)
                 images.append(_img)
-                labels.append(class_to_idx[classname]) 
+                labels.append(class_to_idx[classname])
 
     return images, labels
 
-class  MINCDataloader(data.Dataset):
+
+class MINCDataloader(data.Dataset):
     def __init__(self, config, transform=None, train=True):
         classes, class_to_idx = find_classes(os.path.join(config.dataset_path, 'images'))
         self.classes = classes
@@ -45,11 +37,11 @@ class  MINCDataloader(data.Dataset):
         self.transform = transform
 
         if train:
-            filename = [os.path.join(config.dataset_path, 'labels/train'+ config.split +'.txt'),
-                        os.path.join(config.dataset_path, 'labels/validate'+ config.split +'.txt')]
+            filename = [os.path.join(config.dataset_path, 'labels/train' + config.split + '.txt'),
+                        os.path.join(config.dataset_path, 'labels/validate' + config.split + '.txt')]
         else:
-            filename = [os.path.join(config.dataset_path, 'labels/test'+ config.split +'.txt')]
-        
+            filename = [os.path.join(config.dataset_path, 'labels/test' + config.split + '.txt')]
+
         self.images, self.labels = make_dataset(filename, config.dataset_path, class_to_idx)
         assert (len(self.images) == len(self.labels))
 
@@ -75,7 +67,6 @@ class Dataloder():
             transforms.RandomHorizontalFlip(),
             transforms.RandomVerticalFlip(),
             transforms.ToTensor(),
-            # Lighting(0.1, _imagenet_pca['eigval'], _imagenet_pca['eigvec']),
             normalize,
         ])
         transform_test = transforms.Compose([
@@ -87,35 +78,15 @@ class Dataloder():
 
         trainset = MINCDataloader(config, transform_train, train=True)
         testset = MINCDataloader(config, transform_test, train=False)
-    
+
         kwargs = {'num_workers': 8, 'pin_memory': True}
         trainloader = torch.utils.data.DataLoader(trainset, batch_size=
-            config.batch_size, shuffle=True, **kwargs)
+        config.batch_size, shuffle=True, **kwargs)
         testloader = torch.utils.data.DataLoader(testset, batch_size=
-            config.batch_size, shuffle=False, **kwargs)
+        config.batch_size, shuffle=False, **kwargs)
         self.classes = trainset.classes
-        self.trainloader = trainloader 
+        self.trainloader = trainloader
         self.testloader = testloader
-    
+
     def getloader(self):
         return self.classes, self.trainloader, self.testloader
-
-class Lighting(object):
-    """Lighting noise(AlexNet - style PCA - based noise)"""
-
-    def __init__(self, alphastd, eigval, eigvec):
-        self.alphastd = alphastd
-        self.eigval = eigval
-        self.eigvec = eigvec
-
-    def __call__(self, img):
-        if self.alphastd == 0:
-            return img
-
-        alpha = img.new().resize_(3).normal_(0, self.alphastd)
-        rgb = self.eigvec.type_as(img).clone()\
-            .mul(alpha.view(1, 3).expand(3, 3))\
-            .mul(self.eigval.view(1, 3).expand(3, 3))\
-            .sum(1).squeeze()
-
-        return img.add(rgb.view(3, 1, 1).expand_as(img))

@@ -1,13 +1,11 @@
 import torch
-from torch.autograd import Variable
 import torch.nn as nn
 from torch.autograd import Variable
 
-import encoding
 
-class DEPNet(nn.Module):
+class FinetuneNet(nn.Module):
     def __init__(self, nclass, backbone):
-        super(DEPNet, self).__init__()
+        super(FinetuneNet, self).__init__()
         
         self.pretrained = backbone
         self.fc = nn.Linear(512, nclass)
@@ -32,7 +30,7 @@ class DEPNet(nn.Module):
 
 
 def test():
-    net = Net(nclass=23).cuda()
+    net = FinetuneNet(nclass=23).cuda()
     print(net)
     x = Variable(torch.randn(1,3,224,224)).cuda()
     y = net(x)

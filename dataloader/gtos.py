@@ -1,13 +1,13 @@
-import torch
-import torch.utils.data as data
-import torchvision
-from torchvision import transforms
-
-from PIL import Image
 import os
 import os.path
-import torchvision.transforms.functional as TF
 import random
+
+import torch
+import torch.utils.data as data
+import torchvision.transforms.functional as TF
+from PIL import Image
+from torchvision import transforms
+
 
 def find_classes(classdir):
     classes = []
@@ -20,7 +20,7 @@ def find_classes(classdir):
     return classes, class_to_idx
 
 
-def make_dataset(txtname, datadir, class_to_idx):
+def make_dataset(txtname, datadir):
     rgbimages = []
     diffimages = []
     labels = []
@@ -56,8 +56,7 @@ class GTOSDataloder(data.Dataset):
         else:
             filename = os.path.join(config.dataset_path, 'gtos_splits/testlist0'+ config.split +'.txt')
 
-        self.rgbimages, self.diffimages, self.labels = make_dataset(filename, config.dataset_path, 
-            class_to_idx)
+        self.rgbimages, self.diffimages, self.labels = make_dataset(filename, config.dataset_path)
         assert (len(self.rgbimages) == len(self.labels))
 
     def train_transform(self, _rgbimg, _diffimg):
@@ -152,7 +151,7 @@ class Dataloder():
 
 
 if __name__ == "__main__":
-    trainset = GTOSDataloder(None, root=os.path.expanduser('dataset/gtos'), train=True)
-    testset = GTOSDataloder(None, root=os.path.expanduser('dataset/gtos'), train=False)
+    trainset = GTOSDataloder(None, train=True)
+    testset = GTOSDataloder(None, train=False)
     print(len(trainset.classes))
     print(len(testset))

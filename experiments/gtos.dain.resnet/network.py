@@ -1,9 +1,7 @@
 import torch
-from torch.autograd import Variable
 import torch.nn as nn
 from torch.autograd import Variable
 
-import encoding
 
 class DAIN(nn.Module):
     def __init__(self, nclass, model1, model2):
@@ -46,7 +44,7 @@ class DAIN(nn.Module):
 
 
 def test():
-    net = Net(nclass=23).cuda()
+    net = DAIN(nclass=23).cuda()
     print(net)
     x = Variable(torch.randn(1,3,224,224)).cuda()
     y = net(x)
