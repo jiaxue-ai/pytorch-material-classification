@@ -41,7 +41,7 @@ def make_dataset(txtname, datadir):
 
 class GTOSDataloder(data.Dataset):
     def __init__(self, config, train=True, transform=None):
-        classes, class_to_idx = find_classes(os.path.join(config.dataset_path, 'gtos_splits/classInd.txt'))
+        classes, class_to_idx = find_classes(os.path.join(config.dataset_path, 'labels/classInd.txt'))
         self.classes = classes
         self.class_to_idx = class_to_idx
         self.train = train
@@ -52,9 +52,9 @@ class GTOSDataloder(data.Dataset):
                                          std=[0.07, 0.07, 0.07])
         
         if train:
-            filename = os.path.join(config.dataset_path, 'gtos_splits/trainlist0'+ config.split +'.txt')
+            filename = os.path.join(config.dataset_path, 'labels/train'+ config.split +'.txt')
         else:
-            filename = os.path.join(config.dataset_path, 'gtos_splits/testlist0'+ config.split +'.txt')
+            filename = os.path.join(config.dataset_path, 'labels/test'+ config.split +'.txt')
 
         self.rgbimages, self.diffimages, self.labels = make_dataset(filename, config.dataset_path)
         assert (len(self.rgbimages) == len(self.labels))

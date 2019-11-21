@@ -21,11 +21,11 @@ This repo provides examples for material classification in GTOS, GTOS-MOBILE, DT
 
 - Clone this repo:
 ```bash
-git clone git@github.com:jiaxue1993/pytorch-material-classification.git
+git clone https://github.com/jiaxue1993/pytorch-material-classification.git
 cd pytorch-material-classification/
 ``` 
 
-- Download [GTOS](https://1drv.ms/u/s!AmTf4gl42ObnbXCS4GrRUAWutWI?e=u7nRrR), [GTOS_MOBILE](https://1drv.ms/u/s!AmTf4gl42ObnblEtikrw4HfD9fc?e=LjJir4), [DTD](https://www.robots.ox.ac.uk/~vgg/data/dtd/download/dtd-r1.0.1.tar.gz), [MINC](http://opensurfaces.cs.cornell.edu/static/minc/minc-2500.tar.gz) to the dataset folder
+- Download [GTOS](https://1drv.ms/u/s!AmTf4gl42ObncLmEnEv4R5LyxT4?e=ekkFfX), [GTOS_MOBILE](https://1drv.ms/u/s!AmTf4gl42ObnblEtikrw4HfD9fc?e=LjJir4), [DTD](https://www.robots.ox.ac.uk/~vgg/data/dtd/download/dtd-r1.0.1.tar.gz), [MINC](http://opensurfaces.cs.cornell.edu/static/minc/minc-2500.tar.gz) to the dataset folder
 
 - Navigate to different experiment folder and train network. For example, you can finetune ResNet on GTOS-MOBILE dataset with followint command
 ```bash
