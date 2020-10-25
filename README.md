@@ -34,7 +34,50 @@ python train.py
 ```
 
 ## Accuracy & Statistics
-Coming soon
+
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-5unb">Base Model</th>
+    <th class="tg-5unb">Dataset</th>
+    <th class="tg-5unb">Method</th>
+    <th class="tg-5unb">Accuracy</th>
+    <th class="tg-5unb">Pretrained Model<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-lcl0" rowspan="6">MobileNet</td>
+    <td class="tg-wp8o" rowspan="4"><span style="font-weight:normal;font-style:normal;text-decoration:none">GTOS</span></td>
+    <td class="tg-wp8o">Finetune</td>
+    <td class="tg-wp8o">80.4</td>
+    <td class="tg-wp8o" rowspan="6"><a href="https://1drv.ms/u/s!AmTf4gl42Obncc3EohCJubNVHZQ?e=PZ1eAC" target="_blank" rel="noopener noreferrer">One Drive</a></td>
+  </tr>
+  <tr>
+    <td class="tg-wp8o">DAIN</td>
+    <td class="tg-wp8o">82.5</td>
+  </tr>
+  <tr>
+    <td class="tg-wp8o">DEP</td>
+    <td class="tg-wp8o">83.3</td>
+  </tr>
+  <tr>
+    <td class="tg-wp8o">TEAN</td>
+    <td class="tg-wp8o">84.7</td>
+  </tr>
+  <tr>
+    <td class="tg-wp8o">DTD</td>
+    <td class="tg-wp8o"><span style="font-weight:normal;font-style:normal;text-decoration:none">DEP</span></td>
+    <td class="tg-wp8o">73.2</td>
+  </tr>
+  <tr>
+    <td class="tg-wp8o">MINC</td>
+    <td class="tg-wp8o"><span style="font-weight:normal;font-style:normal;text-decoration:none">DEP</span></td>
+    <td class="tg-wp8o">82.0</td>
+  </tr>
+</tbody>
+</table>
 
 ## Citation
 
@@ -70,6 +113,17 @@ Please consider citing following projects in your publications if it helps your 
   booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
   pages={708--717},
   year={2017}
+}
+```
+
+**Differential Viewpoints for Ground Terrain Material Recognition** [[pdf]](https://ieeexplore.ieee.org/abstract/document/9200748)[[arxiv]](https://arxiv.org/pdf/2009.11072.pdf)
+```
+@article{xue2020differential,
+  title={Differential Viewpoints for Ground Terrain Material Recognition},
+  author={Xue, Jia and Zhang, Hang and Nishino, Ko and Dana, Kristin},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2020},
+  publisher={IEEE}
 }
 ```
 
