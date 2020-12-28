@@ -48,7 +48,7 @@ python train.py
 </thead>
 <tbody>
   <tr>
-    <td class="tg-lcl0" rowspan="6">MobileNet</td>
+    <td class="tg-lcl0" rowspan="4">MobileNet</td>
     <td class="tg-wp8o" rowspan="4"><span style="font-weight:normal;font-style:normal;text-decoration:none">GTOS</span></td>
     <td class="tg-wp8o">Finetune</td>
     <td class="tg-wp8o">80.4</td>
@@ -67,6 +67,7 @@ python train.py
     <td class="tg-wp8o">84.7</td>
   </tr>
   <tr>
+    <td class="tg-lcl0" rowspan="2">ResNet-50</td>
     <td class="tg-wp8o">DTD</td>
     <td class="tg-wp8o"><span style="font-weight:normal;font-style:normal;text-decoration:none">DEP</span></td>
     <td class="tg-wp8o">73.2</td>
